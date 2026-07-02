@@ -1,0 +1,31 @@
+---
+import { t, localePath, altLangPath, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const pathname = Astro.url.pathname;
+
+const items = [
+  { href: localePath(lang, '/'), label: t(lang, 'nav.home'), exact: true, class: 'nav-home' },
+  { href: localePath(lang, '/projects/'), label: t(lang, 'nav.projects'), exact: false, class: '' },
+  { href: localePath(lang, '/resume/'), label: t(lang, 'nav.resume'), exact: false, class: '' },
+];
+
+const isActive = (item: (typeof items)[number]) =>
+  item.exact ? pathname === item.href : pathname.startsWith(item.href);
+---
+
+<header class="navbar">
+  <div class="container">
+    <a class="brand" href={localePath(lang, '/')}>{t(lang, 'site.title')}</a>
+    <nav>
+      {items.map((item) => (
+        <a href={item.href} class={`${item.class} ${isActive(item) ? 'active' : ''}`.trim()}>{item.label}</a>
+      ))}
+      <a class="lang-switch" href={altLangPath(lang, pathname)}>{t(lang, 'nav.switchLang')}</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,72 @@
+{
+  "education": [
+    {
+      "school": "University of Illinois Urbana-Champaign",
+      "degree": "M.S. in Financial Engineering",
+      "location": "Champaign, IL",
+      "period": "Aug 2025 – Dec 2026",
+      "details": [
+        "Coursework: Financial Computing, Statistical Methods, Machine Learning, Finance, Structured Credit, Financial Risk Management, Advanced Financial Derivatives, Stochastic Calculus"
+      ]
+    },
+    {
+      "school": "University of Illinois Urbana-Champaign",
+      "degree": "B.S. in Information Sciences + Data Science, GPA 3.93/4",
+      "location": "Champaign, IL",
+      "period": "Aug 2021 – May 2025",
+      "details": [
+        "Dean's List: Fall 2021, 2022, 2024, Spring 2024; President of the UIUC Taiwanese Student Association",
+        "Coursework: Computer Science, Linear Algebra, Algorithms and Data Structures, Database Design and Prototyping"
+      ]
+    }
+  ],
+  "skills": [
+    { "category": "Programming", "items": ["C++", "SQL", "Python", "HTML/CSS", "JavaScript"] },
+    { "category": "Tools", "items": ["Pandas", "NumPy", "Matplotlib", "Scikit-learn", "Django", "Anaconda", "Figma", "GitHub"] }
+  ],
+  "experience": [
+    {
+      "title": "Consumer Default and Financial Ruin Modeling",
+      "organization": "Ernst & Young Practicum Project",
+      "location": "Champaign, IL",
+      "period": "Jan 2026 – Present",
+      "bullets": [
+        "Developing synthetic household-level financial data calibrated from BLS, Federal Reserve SHED, and BEA datasets to simulate monthly income, spending, and debt trajectories.",
+        "Building ML models (Logistic Regression, Random Forest, XGBoost) with SHAP analysis to predict consumer financial distress over a 12–36 month horizon.",
+        "Designing an optimization framework using binary search and simulation to compute personalized safe impulsive spending limits."
+      ]
+    },
+    {
+      "title": "Compulsory Military Service – Taiwan Marine Corps",
+      "organization": "Ministry of National Defense R.O.C. (Taiwan)",
+      "location": "Pingtung, Taiwan",
+      "period": "Jun 2023 – Oct 2023",
+      "bullets": [
+        "Served in the Marines Division of the Taiwan Navy Forces, developing strong discipline, adaptability, and teamwork skills through intensive training and operational deployments.",
+        "Developed problem-solving and decision-making abilities in a high-pressure environment while serving as part of a cohesive team."
+      ]
+    },
+    {
+      "title": "Software Development Engineer Intern",
+      "organization": "Landseed International Medical Group",
+      "location": "Taoyuan, Taiwan",
+      "period": "Jun 2022 – Jul 2022",
+      "bullets": [
+        "Learned ASP.NET, C#, MVC design pattern, Entity Framework, and Web APIs through a 6-week intensive training.",
+        "Developed a full-stack meeting room reservation system from scratch in 6 weeks, including table search/sort, a real-time SQL Server database, business logic APIs, and a third-party calendar plugin."
+      ]
+    }
+  ],
+  "leadership": [
+    {
+      "title": "President",
+      "organization": "UIUC Taiwanese Student Association",
+      "location": "Champaign, IL",
+      "period": "Jun 2022 – Jun 2023",
+      "bullets": [
+        "Coordinated with 5 department directors and over 40 members, managing sponsorships, financial operations, and event planning logistics.",
+        "Partnered with global companies (TSMC, Marketech International Corp.) and 5+ local businesses to organize career programs, new student orientation, and cultural festival events."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t, resumes, profiles, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const resume = resumes[lang];
+const profile = profiles[lang];
+---
+
+<BaseLayout lang={lang} title={t(lang, 'resume.title')} description={profile.headline}>
+  <div class="resume-header">
+    <h1>{t(lang, 'resume.title')}</h1>
+    <a class="btn primary" href="/resume.pdf" download>{t(lang, 'resume.download')}</a>
+  </div>
+
+  <h2>{t(lang, 'resume.education')}</h2>
+  {resume.education.map((edu) => (
+    <div class="resume-item">
+      <div class="row">
+        <span class="title">{edu.school}</span>
+        <span class="period">{edu.period}</span>
+      </div>
+      <div class="row">
+        <span class="org">{edu.degree}</span>
+        <span class="org">{edu.location}</span>
+      </div>
+      <ul>
+        {edu.details.map((d) => <li>{d}</li>)}
+      </ul>
+    </div>
+  ))}
+
+  <h2>{t(lang, 'resume.skills')}</h2>
+  {resume.skills.map((group) => (
+    <p class="skills-row">
+      <span class="category">{group.category}:</span>
+      {group.items.join(' · ')}
+    </p>
+  ))}
+
+  <h2>{t(lang, 'resume.experience')}</h2>
+  {resume.experience.map((job) => (
+    <div class="resume-item">
+      <div class="row">
+        <span class="title">{job.title}</span>
+        <span class="period">{job.period}</span>
+      </div>
+      <div class="row">
+        <span class="org">{job.organization}</span>
+        <span class="org">{job.location}</span>
+      </div>
+      <ul>
+        {job.bullets.map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+  ))}
+
+  <h2>{t(lang, 'resume.leadership')}</h2>
+  {resume.leadership.map((item) => (
+    <div class="resume-item">
+      <div class="row">
+        <span class="title">{item.title}</span>
+        <span class="period">{item.period}</span>
+      </div>
+      <div class="row">
+        <span class="org">{item.organization}</span>
+        <span class="org">{item.location}</span>
+      </div>
+      <ul>
+        {item.bullets.map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+  ))}
+</BaseLayout>

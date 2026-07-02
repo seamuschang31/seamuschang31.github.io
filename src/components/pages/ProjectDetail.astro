@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t, localePath, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  project: CollectionEntry<'projects'>;
+}
+
+const { lang, project } = Astro.props;
+const { Content } = await render(project);
+const dateFormat = new Intl.DateTimeFormat(lang === 'zh' ? 'zh-Hant' : 'en-US', {
+  year: 'numeric',
+  month: 'short',
+});
+---
+
+<BaseLayout lang={lang} title={project.data.title} description={project.data.summary}>
+  <a href={localePath(lang, '/projects/')}>{t(lang, 'projects.back')}</a>
+  <h1 style="margin-top: 0.8rem;">{project.data.title}</h1>
+  <p class="project-meta">
+    {dateFormat.format(project.data.date)}
+    {project.data.github && (
+      <>
+        {' · '}
+        <a href={project.data.github} target="_blank" rel="noopener">{t(lang, 'projects.viewGithub')}</a>
+      </>
+    )}
+    {project.data.demo && (
+      <>
+        {' · '}
+        <a href={project.data.demo} target="_blank" rel="noopener">{t(lang, 'projects.viewDemo')}</a>
+      </>
+    )}
+  </p>
+  {project.data.tags.length > 0 && (
+    <ul class="tags">
+      {project.data.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+  )}
+  <div class="prose">
+    <Content />
+  </div>
+</BaseLayout>

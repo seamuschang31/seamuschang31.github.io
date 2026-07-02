@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { localePath, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  project: CollectionEntry<'projects'>;
+}
+
+const { lang, project } = Astro.props;
+const slug = project.id.replace(/^(en|zh)\//, '');
+const href = localePath(lang, `/projects/${slug}/`);
+---
+
+<li class="project-card">
+  <h3><a href={href}>{project.data.title}</a></h3>
+  <p>{project.data.summary}</p>
+  {project.data.tags.length > 0 && (
+    <ul class="tags">
+      {project.data.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+  )}
+</li>

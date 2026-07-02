@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectDetail from '../../../components/pages/ProjectDetail.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', (p) => p.id.startsWith('zh/'));
+  return projects.map((project) => ({
+    params: { slug: project.id.replace(/^zh\//, '') },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<ProjectDetail lang="zh" project={project} />

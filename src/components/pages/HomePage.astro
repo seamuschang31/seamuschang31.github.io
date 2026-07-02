@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../ProjectCard.astro';
+import { t, profiles, localePath, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const profile = profiles[lang];
+
+const featured = (await getCollection('projects', (p) => p.id.startsWith(`${lang}/`) && p.data.featured))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout lang={lang} title={t(lang, 'site.title')} description={profile.bio}>
+  <section class="hero">
+    <h1>{profile.name}</h1>
+    <p class="headline">{profile.headline}</p>
+    <p class="bio">{profile.bio}</p>
+    <div class="links">
+      <a class="btn primary" href={`mailto:${profile.email}`}>{t(lang, 'home.contact')}</a>
+      <a class="btn" href={profile.links.github} target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="/resume.pdf">{t(lang, 'resume.download')}</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-header">
+      <h2>{t(lang, 'home.featured')}</h2>
+      <a href={localePath(lang, '/projects/')}>{t(lang, 'home.viewAll')} →</a>
+    </div>
+    <ul class="card-grid">
+      {featured.map((project) => <ProjectCard lang={lang} project={project} />)}
+    </ul>
+  </section>
+</BaseLayout>
